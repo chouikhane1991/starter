@@ -40,5 +40,18 @@ Route::get('/redirect/{services}','SocialController@redirect');
 
 Route::get('/callback/{services}','SocialController@callback');
 
+Route::get('fillable','Crud@getoffers');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+Route::group(['prefix'=>'offers'],function (){
+    //Route::get('store','Crud@store');
+    Route::get('create','Crud@create');
+    Route::post('store','Crud@store')->name('addtodata');
+
+});
+});
 
 
