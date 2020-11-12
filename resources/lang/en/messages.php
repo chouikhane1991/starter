@@ -13,4 +13,9 @@ return [
     |
     */
     'required'=>'please enter the goode name',
+    'Add your offer'=>'Create your offer ',
+    'save'=>'Save your Offer ',
+    'offer name'=>'Offer name',
+    'price'=>'The price',
+
 ];

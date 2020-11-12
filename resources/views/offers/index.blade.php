@@ -88,66 +88,27 @@
         </form>
     </div>
 </nav>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{__('messages.offer name')}}</th>
+        <th scope="col">Last</th>
+        <th scope="col">{{__('messages.price')}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($offers as $offers)
+    <tr>
+        <th scope="row">{{$offers->id}}</th>
+        <td>{{$offers->name}}</td>
+        <td>{{$offers->details}}</td>
+        <td>{{$offers->price}}</td>
+    </tr>
+        @endforeach
 
-<div class="flex-center position-ref full-height">
-    <div class="content">
-        <div class="title m-b-md">
-            {{__('messages.Add your offer')}}
+    </tbody>
+</table>
 
-        </div>
-        @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{Session::get('success')}}
-        </div>
-        @endif
-        <br>
-        <form method="POST" action="{{route('addtodata')}}">
-            @csrf
-            <div class="form-group">
-                <label for="exampleInputEmail1">OFFER NAME en</label>
-                <input type="text" class="form-control" name="name_en" aria-describedby="emailHelp" placeholder="Enter offer name ">
-                @error('name_en')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">OFFER NAME ar</label>
-                <input type="text" class="form-control" name="name_ar" aria-describedby="emailHelp" placeholder="Enter offer name ">
-                @error('name_ar')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">OFFER PRICE</label>
-                <input type="text" class="form-control" name="price" aria-describedby="emailHelp" placeholder="Enter offer price">
-                @error('price')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">OFFER details en</label>
-                <input type="text" class="form-control" name="details_en" aria-describedby="emailHelp" placeholder="Enter offer price">
-                @error('details_en')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">OFFER details ar</label>
-                <input type="text" class="form-control" name="details_ar" aria-describedby="emailHelp" placeholder="Enter offer price">
-                @error('details_ar')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
-        </form>
-
-
-    </div>
-</div>
 </body>
 </html>

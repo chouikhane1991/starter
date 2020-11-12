@@ -50,6 +50,7 @@ Route::group(['prefix'=>'offers'],function (){
     //Route::get('store','Crud@store');
     Route::get('create','Crud@create');
     Route::post('store','Crud@store')->name('addtodata');
+    Route::get('index','Crud@index');
 
 });
 });
