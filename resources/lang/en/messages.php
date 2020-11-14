@@ -17,5 +17,9 @@ return [
     'save'=>'Save your Offer ',
     'offer name'=>'Offer name',
     'price'=>'The price',
+    'operation'=>'Operation',
+    'update'=>'update',
+    'edite'=>'edite',
+
 
 ];

@@ -101,32 +101,25 @@
         </div>
         @endif
         <br>
-        <form method="POST" action="{{route('addtodata')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{route('update',$offer->id)}}">
             @csrf
             <div class="form-group">
-                <label for="exampleInputEmail1">choose photo</label>
-                <input type="file" class="form-control" name="photo"  >
-                @error('photo')
-                <small  class="form-text text-danger">{{$message}}</small>
-                @enderror
-            </div>
-            <div class="form-group">
                 <label for="exampleInputEmail1">OFFER NAME en</label>
-                <input type="text" class="form-control" name="name_en" aria-describedby="emailHelp" placeholder="Enter offer name ">
+                <input type="text" class="form-control" value="{{$offer->name_en}}" name="name_en" aria-describedby="emailHelp" placeholder="Enter offer name ">
                 @error('name_en')
                 <small  class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">OFFER NAME ar</label>
-                <input type="text" class="form-control" name="name_ar" aria-describedby="emailHelp" placeholder="Enter offer name ">
+                <input type="text" class="form-control" name="name_ar" value="{{$offer->name_ar}}" aria-describedby="emailHelp" placeholder="Enter offer name ">
                 @error('name_ar')
                 <small  class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">OFFER PRICE</label>
-                <input type="text" class="form-control" name="price" aria-describedby="emailHelp" placeholder="Enter offer price">
+                <input type="text" class="form-control" name="price" value="{{$offer->price}}" aria-describedby="emailHelp" placeholder="Enter offer price">
                 @error('price')
                 <small  class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -134,7 +127,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">OFFER details en</label>
-                <input type="text" class="form-control" name="details_en" aria-describedby="emailHelp" placeholder="Enter offer price">
+                <input type="text" class="form-control" name="details_en" value="{{$offer->details_ar}}" aria-describedby="emailHelp" placeholder="Enter offer price">
                 @error('details_en')
                 <small  class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -142,7 +135,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">OFFER details ar</label>
-                <input type="text" class="form-control" name="details_ar" aria-describedby="emailHelp" placeholder="Enter offer price">
+                <input type="text" class="form-control" value="{{$offer->details_en}}" name="details_ar" aria-describedby="emailHelp" placeholder="Enter offer price">
                 @error('details_ar')
                 <small  class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -150,7 +143,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('messages.edite') }}</button>
         </form>
 
 

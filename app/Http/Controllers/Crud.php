@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
+use App\Traits\offerTrait;
+use Facade\FlareClient\View;
+use LaravelLocalization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class Crud extends Controller
 {
+    use offerTrait;
     /**
      * Create a new controller instance.
      *
@@ -41,7 +45,12 @@ class Crud extends Controller
           //  return redirect()->back()->withErrors($validator)->withInput($data->all());
         //}
 
+         //save photo
+            $image_name=$this->SaveImage($data->photo,'images/offers');
+         //return 'done';
+
          Offer::create([
+             'photo'=>$image_name,
              'name_ar'=>$data->name_ar,
              'name_en'=>$data->name_en,
              'price'=>$data->price,
@@ -71,12 +80,42 @@ class Crud extends Controller
      }
      public function index(){
 
-          $offers=Offer::select('id','name','price','details')->get();
+          $offers=Offer::select(
+              'id',
+              'name_'.LaravelLocalization::getCurrentLocale().' as name',
+              'price',
+              'details_'.LaravelLocalization::getCurrentLocale().' as details'
+
+          )->get();
           return view('offers/index',compact('offers'));
+     }
+     public function EditOffers ($offer_id){
+         //Offer::findorfail($offer_id);
+         $offer=Offer::find($offer_id);
+         $offer2=Offer::select('name_ar')->find($offer_id);
+         if($offer){
+             return view('offers.edite',compact('offer'));
+               // return $offer;
 
+         }else{
+             return redirect()->back();
 
+         }
 
      }
+    public function UpdateOffers(OfferRequest $data,$offer_id){
+        //validation done in requiste php
+         $offer=Offer::find($offer_id);
+         //check the offer is existe or no
+        if(!$offer)
+            return redirect()->back();
+        //there is two methos update first one
+        $offer->update($data->all());
+
+        return redirect()->back()->with('success',trans('messages.update'));
+
+    }
+
 
 
 }

@@ -52,6 +52,9 @@ Route::group(['prefix'=>'offers'],function (){
     Route::post('store','Crud@store')->name('addtodata');
     Route::get('index','Crud@index');
 
+    Route::get('edit/{offer_id}','Crud@EditOffers');
+    Route::post('update/{offer_id}','Crud@UpdateOffers')->name('update');
+
 });
 });
 
