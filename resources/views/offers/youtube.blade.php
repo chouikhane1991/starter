@@ -89,39 +89,8 @@
     </div>
 </nav>
 
-@if(Session::has('done'))
-    <div class="alert alert-success" role="alert">
-        the Order has been deleted
-    </div>
-
-@endif
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">{{__('messages.offer name')}}</th>
-        <th scope="col">Last</th>
-        <th scope="col">{{__('messages.price')}}</th>
-        <th scope="col">{{__('messages.operation')}}</th>
-        <th scope="col">image</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($offers as $offers)
-    <tr>
-        <th scope="row">{{$offers->id}}</th>
-        <td>{{$offers->name}}</td>
-        <td>{{$offers->details}}</td>
-        <td>{{$offers->price}}</td>
-        <td><a type="button" href="{{url('offers/edit/'.$offers->id)}}" class="btn btn-success">{{__('messages.update')}}</a>
-            <a type="button" href="{{url('offers/delete/'.$offers->id)}}" class="btn btn-danger">{{__('messages.delet')}}</a>
-        </td>
-        <td><img src={{asset('images/offers/'.$offers->photo)}} class="img-thumbnail"></td>
-    </tr>
-        @endforeach
-
-    </tbody>
-</table>
-
+<div class="title m-b-md">
+Video Viewer({{$video->viewer}})
+</div>
 </body>
 </html>

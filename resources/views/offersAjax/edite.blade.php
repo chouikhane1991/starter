@@ -89,39 +89,65 @@
     </div>
 </nav>
 
-@if(Session::has('done'))
-    <div class="alert alert-success" role="alert">
-        the Order has been deleted
+<div class="flex-center position-ref full-height">
+    <div class="content">
+        <div class="title m-b-md">
+            {{__('messages.Add your offer')}}
+
+        </div>
+        @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+        </div>
+        @endif
+        <br>
+        <form method="POST" action="{{route('update',$offer->id)}}">
+            @csrf
+            <div class="form-group">
+                <label for="exampleInputEmail1">OFFER NAME en</label>
+                <input type="text" class="form-control" value="{{$offer->name_en}}" name="name_en" aria-describedby="emailHelp" placeholder="Enter offer name ">
+                @error('name_en')
+                <small  class="form-text text-danger">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">OFFER NAME ar</label>
+                <input type="text" class="form-control" name="name_ar" value="{{$offer->name_ar}}" aria-describedby="emailHelp" placeholder="Enter offer name ">
+                @error('name_ar')
+                <small  class="form-text text-danger">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">OFFER PRICE</label>
+                <input type="text" class="form-control" name="price" value="{{$offer->price}}" aria-describedby="emailHelp" placeholder="Enter offer price">
+                @error('price')
+                <small  class="form-text text-danger">{{$message}}</small>
+                @enderror
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">OFFER details en</label>
+                <input type="text" class="form-control" name="details_en" value="{{$offer->details_ar}}" aria-describedby="emailHelp" placeholder="Enter offer price">
+                @error('details_en')
+                <small  class="form-text text-danger">{{$message}}</small>
+                @enderror
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">OFFER details ar</label>
+                <input type="text" class="form-control" value="{{$offer->details_en}}" name="details_ar" aria-describedby="emailHelp" placeholder="Enter offer price">
+                @error('details_ar')
+                <small  class="form-text text-danger">{{$message}}</small>
+                @enderror
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">{{ __('messages.edite') }}</button>
+        </form>
+
+
     </div>
-
-@endif
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">{{__('messages.offer name')}}</th>
-        <th scope="col">Last</th>
-        <th scope="col">{{__('messages.price')}}</th>
-        <th scope="col">{{__('messages.operation')}}</th>
-        <th scope="col">image</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($offers as $offers)
-    <tr>
-        <th scope="row">{{$offers->id}}</th>
-        <td>{{$offers->name}}</td>
-        <td>{{$offers->details}}</td>
-        <td>{{$offers->price}}</td>
-        <td><a type="button" href="{{url('offers/edit/'.$offers->id)}}" class="btn btn-success">{{__('messages.update')}}</a>
-            <a type="button" href="{{url('offers/delete/'.$offers->id)}}" class="btn btn-danger">{{__('messages.delet')}}</a>
-        </td>
-        <td><img src={{asset('images/offers/'.$offers->photo)}} class="img-thumbnail"></td>
-    </tr>
-        @endforeach
-
-    </tbody>
-</table>
-
+</div>
 </body>
 </html>

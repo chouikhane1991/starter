@@ -20,6 +20,7 @@ return [
     'operation'=>'العمليات',
     'update'=>'تعديل',
     'edite'=>'تعديل',
+    'delet'=>'حدف',
 
 
 ];

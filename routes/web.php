@@ -50,12 +50,24 @@ Route::group(['prefix'=>'offers'],function (){
     //Route::get('store','Crud@store');
     Route::get('create','Crud@create');
     Route::post('store','Crud@store')->name('addtodata');
-    Route::get('index','Crud@index');
+    Route::get('index','Crud@index')->name('index');;
 
     Route::get('edit/{offer_id}','Crud@EditOffers');
     Route::post('update/{offer_id}','Crud@UpdateOffers')->name('update');
+    Route::get('youtube','Crud@youtube');
+    Route::get('delete/{offer_id}','Crud@delete');
+
 
 });
+
 });
 
+////////////////////////////begin Ajax routes
+Route::group(['prefix'=>'offersajax'],function (){
+    Route::get('create','Ajax@create');
+    Route::post('store','Ajax@store')->name('ajax.offer.store');
+
+
+
+});
 

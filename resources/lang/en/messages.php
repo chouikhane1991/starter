@@ -20,6 +20,7 @@ return [
     'operation'=>'Operation',
     'update'=>'update',
     'edite'=>'edite',
+    'delet'=>'delet',
 
 
 ];

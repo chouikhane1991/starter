@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VideoViewer;
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
+use App\Models\Video;
 use App\Traits\offerTrait;
 use Facade\FlareClient\View;
 use LaravelLocalization;
@@ -84,6 +86,7 @@ class Crud extends Controller
               'id',
               'name_'.LaravelLocalization::getCurrentLocale().' as name',
               'price',
+              'photo',
               'details_'.LaravelLocalization::getCurrentLocale().' as details'
 
           )->get();
@@ -113,6 +116,24 @@ class Crud extends Controller
         $offer->update($data->all());
 
         return redirect()->back()->with('success',trans('messages.update'));
+
+    }
+    public function youtube(){
+         $video=Video::first();
+         event(new VideoViewer($video));
+         return view('offers.youtube')->with('video',$video);
+
+    }
+    public function delete($offer_id){
+        $offer=Offer::find($offer_id)->first();;
+        //$offer=Offer::where('id',$offer_id)->first();
+        if(!$offer)
+        return redirect()->back();
+
+        $offer->delete();
+        return redirect()->route('index')->with(['done'=>'your order has been deleted ']);;
+
+
 
     }
 
